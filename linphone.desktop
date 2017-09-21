@@ -1,0 +1,15 @@
+[Desktop Entry]
+Type=Application
+Name=Linphone
+GenericName=SIP App
+Comment=SIP Phone application
+Keywords=Phone;Dialer;Dial;Call;Keypad
+Exec=qmlscene %U qml/dialer-app.qml
+Terminal=false
+Icon=./icon.svg
+MimeType=x-scheme-handler/contact;x-scheme-handler/call
+X-Ubuntu-Touch=true
+X-Ubuntu-StageHint=SideStage
+X-Ubuntu-Single-Instance=true
+X-Ubuntu-Default-Department-ID=accessories
+X-Ubuntu-Splash-Show-Header=true

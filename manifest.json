@@ -1,0 +1,15 @@
+{
+    "name": "linphone.cibersheep",
+    "description": "Linphone port to UT phones.",
+    "architecture": "armhf",
+    "title": "Linphone",
+    "hooks": {
+        "linphone": {
+            "apparmor": "linphone.apparmor",
+            "desktop": "linphone.desktop"
+        }
+    },
+    "version": "0.2",
+    "maintainer": "Joan CiberSheep <cibersheep@gmail.com>",
+    "framework": "ubuntu-sdk-15.04.6"
+}
