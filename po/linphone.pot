@@ -1,0 +1,158 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: linphone\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-21 04:53+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../qml/DialerPage.qml:47
+msgid "Settings"
+msgstr ""
+
+#: ../qml/DialerPage.qml:53
+msgid "Contacts"
+msgstr ""
+
+#: ../qml/DialerPage.qml:59
+msgid "Messages"
+msgstr ""
+
+#: ../qml/DialerPage.qml:65
+msgid "Dialer"
+msgstr ""
+
+#: ../qml/DialerPage.qml:83
+msgid "Close"
+msgstr ""
+
+#: ../qml/DialerPage.qml:114
+msgid "Phone"
+msgstr ""
+
+#: ../qml/DialerPage.qml:303
+msgid "Enter a number"
+msgstr ""
+
+#: ../qml/DialerPage.qml:474
+msgid "Calling"
+msgstr ""
+
+#: ../qml/Keypad.qml:51
+msgid "1"
+msgstr ""
+
+#: ../qml/Keypad.qml:68
+msgid "2"
+msgstr ""
+
+#: ../qml/Keypad.qml:69
+msgid "ABC"
+msgstr ""
+
+#: ../qml/Keypad.qml:85
+msgid "3"
+msgstr ""
+
+#: ../qml/Keypad.qml:86
+msgid "DEF"
+msgstr ""
+
+#: ../qml/Keypad.qml:102
+msgid "4"
+msgstr ""
+
+#: ../qml/Keypad.qml:103
+msgid "GHI"
+msgstr ""
+
+#: ../qml/Keypad.qml:119
+msgid "5"
+msgstr ""
+
+#: ../qml/Keypad.qml:120
+msgid "JKL"
+msgstr ""
+
+#: ../qml/Keypad.qml:136
+msgid "6"
+msgstr ""
+
+#: ../qml/Keypad.qml:137
+msgid "MNO"
+msgstr ""
+
+#: ../qml/Keypad.qml:153
+msgid "7"
+msgstr ""
+
+#: ../qml/Keypad.qml:154
+msgid "PQRS"
+msgstr ""
+
+#: ../qml/Keypad.qml:170
+msgid "8"
+msgstr ""
+
+#: ../qml/Keypad.qml:171
+msgid "TUV"
+msgstr ""
+
+#: ../qml/Keypad.qml:187
+msgid "9"
+msgstr ""
+
+#: ../qml/Keypad.qml:188
+msgid "WXYZ"
+msgstr ""
+
+#: ../qml/Keypad.qml:206
+msgid "*"
+msgstr ""
+
+#: ../qml/Keypad.qml:222
+msgid "0"
+msgstr ""
+
+#: ../qml/Keypad.qml:223
+msgid "+"
+msgstr ""
+
+#: ../qml/Keypad.qml:242
+msgid "#"
+msgstr ""
+
+#: ../qml/dialer-app.qml:236
+msgid "No SIM card selected"
+msgstr ""
+
+#: ../qml/dialer-app.qml:236
+msgid "You need to select a SIM card"
+msgstr ""
+
+#: ../qml/dialer-app.qml:255 ../qml/dialer-app.qml:260
+msgid "No network"
+msgstr ""
+
+#: ../qml/dialer-app.qml:255 ../qml/dialer-app.qml:262
+msgid "There is currently no network."
+msgstr ""
+
+#: ../qml/dialer-app.qml:261
+msgid "There is currently no network on %1"
+msgstr ""
+
+#: linphone.desktop.in.h:1
+msgid "Linphone"
+msgstr ""
