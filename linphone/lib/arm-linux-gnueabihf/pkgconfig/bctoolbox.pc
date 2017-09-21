@@ -1,0 +1,10 @@
+# This is a comment
+prefix=/home/brian/dev/ubuntu/apps/linphone-app/compile-linphone-ubuntu-touch/output
+exec_prefix=/home/brian/dev/ubuntu/apps/linphone-app/compile-linphone-ubuntu-touch/output
+
+Name:  bctoolbox
+Description: A common set of tools used by Belledonne Communication's softwares
+Version: 0.6.0
+Libs: -L/home/brian/dev/ubuntu/apps/linphone-app/compile-linphone-ubuntu-touch/output/lib/arm-linux-gnueabihf -lbctoolbox
+Libs.private:  -L/usr/lib -lpolarssl
+Cflags: -I/home/brian/dev/ubuntu/apps/linphone-app/compile-linphone-ubuntu-touch/output/include

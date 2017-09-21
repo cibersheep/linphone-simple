@@ -1,0 +1,9 @@
+# This is a comment
+prefix=/home/brian/dev/ubuntu/apps/linphone-app/compile-linphone-ubuntu-touch/output
+exec_prefix=/home/brian/dev/ubuntu/apps/linphone-app/compile-linphone-ubuntu-touch/output
+Name:  bctoolbox-tester
+Description: A common set of tester wrappers used by Belledonne Communications's softwares
+Requires.private: bcunit
+Version: 0.6.0
+Libs: -L/home/brian/dev/ubuntu/apps/linphone-app/compile-linphone-ubuntu-touch/output/lib/arm-linux-gnueabihf -lbctoolbox-tester
+Cflags: -I/home/brian/dev/ubuntu/apps/linphone-app/compile-linphone-ubuntu-touch/output/include
