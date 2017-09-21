@@ -1,0 +1,11 @@
+set(LINPHONE_DIR "/linphone")
+
+
+install(
+    FILES bin/linphonec bin/linphonecsh bin/linphone-daemon
+    PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_EXECUTE
+    DESTINATION ${LINPHONE_DIR}/bin
+)
+
+install(DIRECTORY lib DESTINATION ${LINPHONE_DIR})
+install(DIRECTORY share DESTINATION ${LINPHONE_DIR})
