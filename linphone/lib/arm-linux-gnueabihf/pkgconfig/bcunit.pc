@@ -1,0 +1,10 @@
+prefix=
+exec_prefix=bin
+libdir=lib/arm-linux-gnueabihf
+includedir=include
+
+Name: BCUnit
+Description: C Unit Testing Framework
+Version: 3.0-2
+Libs: -Llib/arm-linux-gnueabihf -lbcunit
+Cflags: -Iinclude

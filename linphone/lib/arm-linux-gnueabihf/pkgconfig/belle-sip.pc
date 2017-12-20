@@ -1,0 +1,13 @@
+# This is a comment
+prefix=/home/brian/dev/ubuntu/apps/linphone-app/compile-linphone-ubuntu-touch/output
+exec_prefix=/home/brian/dev/ubuntu/apps/linphone-app/compile-linphone-ubuntu-touch/output/bin
+includedir=/home/brian/dev/ubuntu/apps/linphone-app/compile-linphone-ubuntu-touch/output/include
+
+Name: belle-sip 
+Description: A c based implementation of the SIP (RFC 3261)  telephony protocol 
+Requires: bctoolbox
+Requires.private:  z 
+Version: 1.6.3
+Libs: -L/home/brian/dev/ubuntu/apps/linphone-app/compile-linphone-ubuntu-touch/output/lib -lbellesip
+Libs.private: -L/usr/lib/arm-linux-gnueabihf -lantlr3c -L -lbctoolbox -ldl -lrt
+Cflags: -I/home/brian/dev/ubuntu/apps/linphone-app/compile-linphone-ubuntu-touch/output/include 

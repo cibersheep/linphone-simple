@@ -1,15 +1,14 @@
 {
     "template": "unconfined",
     "policy_groups": [
-	"content_exchange",
+        "content_exchange",
         "content_exchange_source",
-	"contacts",
-	"accounts",
-	"connectivity",
-	"history",
-	"microphone",
-	"audio"
+        "contacts",
+        "accounts",
+        "connectivity",
+        "history",
+        "microphone",
+        "audio"
     ],
     "policy_version": 1.3
 }
-
