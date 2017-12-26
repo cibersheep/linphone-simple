@@ -22,12 +22,14 @@ import Qt.labs.settings 1.0
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
 
+import ServiceControl 1.0
+
 MainView {
     id: mainView
 
     objectName: "mainView"
     applicationName: "linphone.cibersheep"
-    
+
     property bool applicationActive: Qt.application.active
     property string ussdResponseTitle: ""
     property string ussdResponseText: ""
@@ -48,9 +50,6 @@ MainView {
     property string pendingNumberToDial: ""
     property bool accountReady: false
 
-    
-    
-    
     Settings {
         id: dualSimSettings
         category: "DualSim"
@@ -63,7 +62,29 @@ MainView {
         property string lastCalledPhoneNumber: ""
     }
 
+    ServiceControl {
+        id: serviceControl
+        appId: 'linphone.cibersheep'
+        serviceName: 'linphone'
 
+        //TODO don't hardcode these
+        servicePath: '/opt/click.ubuntu.com/linphone.cibersheep/current/linphone/bin/linphonec --pipe' //TODO specify our own config file
+        libraryPath: '/opt/click.ubuntu.com/linphone.cibersheep/current/linphone/lib/arm-linux-gnueabihf'
+        extraEnv: 'env TMPDIR=/home/phablet/.cache/linphone-tmp/'
+        preStartScript: 'mkdir -p $TMPDIR'
+
+        Component.onCompleted: {
+            if (!serviceFileInstalled) {
+                console.log('Service file not installed, installing now')
+                installServiceFile();
+            }
+
+            if (!serviceRunning) {
+                console.log('Service not running, starting now')
+                startService();
+            }
+        }
+    }
 
     state: "normalMode"
     states: [
@@ -77,7 +98,7 @@ MainView {
                         pageStackGreeterMode.push(Qt.resolvedUrl("DialerPage.qml"))
                     }
                     // make sure to reset the view so that the contacts page is not loaded
-                    
+
                 }
             }
         },
@@ -87,7 +108,7 @@ MainView {
             StateChangeScript {
                 script: {
                     // make sure to reset the view so that the contacts page is not loaded
-                    
+
                 }
             }
         }
@@ -185,7 +206,7 @@ MainView {
     function callEmergency(number) {
         // if we are in flight mode, we first need to disable it and wait for
         // the modems to update
-        
+
 
         animateLiveCall();
 
@@ -198,7 +219,7 @@ MainView {
             account = accountsModel.activeAccounts[0];
         } else {
             // if no account is active, use any account that can make emergency calls
-            
+
         }
 
         // not sure what to do when no accounts can make emergency calls
@@ -395,7 +416,7 @@ MainView {
         */
     }
 
-    
+
 
     Connections {
         target: UriHandler

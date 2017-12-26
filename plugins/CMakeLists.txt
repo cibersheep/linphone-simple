@@ -1,1 +1,1 @@
-add_subdirectory(Linphone)
+add_subdirectory(ServiceControl)
