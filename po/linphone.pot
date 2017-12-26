@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: linphone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-26 05:03+0000\n"
+"POT-Creation-Date: 2017-12-26 05:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -133,23 +133,23 @@ msgstr ""
 msgid "#"
 msgstr ""
 
-#: ../qml/dialer-app.qml:257
+#: ../qml/dialer-app.qml:258
 msgid "No SIM card selected"
 msgstr ""
 
-#: ../qml/dialer-app.qml:257
+#: ../qml/dialer-app.qml:258
 msgid "You need to select a SIM card"
 msgstr ""
 
-#: ../qml/dialer-app.qml:276 ../qml/dialer-app.qml:281
+#: ../qml/dialer-app.qml:277 ../qml/dialer-app.qml:282
 msgid "No network"
 msgstr ""
 
-#: ../qml/dialer-app.qml:276 ../qml/dialer-app.qml:283
+#: ../qml/dialer-app.qml:277 ../qml/dialer-app.qml:284
 msgid "There is currently no network."
 msgstr ""
 
-#: ../qml/dialer-app.qml:282
+#: ../qml/dialer-app.qml:283
 msgid "There is currently no network on %1"
 msgstr ""
 

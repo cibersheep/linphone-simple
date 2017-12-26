@@ -23,6 +23,7 @@ import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
 
 import ServiceControl 1.0
+import Linphone 1.0
 
 MainView {
     id: mainView
@@ -414,6 +415,8 @@ MainView {
             switchToLiveCall();
         }
         */
+
+        //For Testing: Linphone.call("sip:username@ip:5060");
     }
 
 
