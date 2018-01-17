@@ -96,7 +96,8 @@ MainView {
                 script: {
                     // preload greeter stack if not done yet
                     if (pageStackGreeterMode.depth == 0) {
-                        pageStackGreeterMode.push(Qt.resolvedUrl("DialerPage.qml"))
+                        //pageStackGreeterMode.push(Qt.resolvedUrl("DialerPage.qml")) 
+                        pageStackGreeterMode.push(Qt.resolvedUrl("Totest.qml")) 
                     }
                     // make sure to reset the view so that the contacts page is not loaded
 
@@ -403,7 +404,8 @@ MainView {
         /*
         i18n.bindtextdomain("dialer-app", i18nDirectory)
         */
-        pageStackNormalMode.push(Qt.createComponent("DialerPage.qml"))
+        //pageStackNormalMode.push(Qt.createComponent("DialerPage.qml"))
+        pageStackNormalMode.push(Qt.createComponent("Totest.qml"))
 
         // when running in windowed mode, do not allow resizing
         //view.minimumWidth  = units.gu(40)

@@ -21,6 +21,9 @@ import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
 import Ubuntu.Components.ListItems 1.3 as ListItems
 
+import ServiceControl 1.0
+import Linphone 1.0
+
 //import "../"
 
 Page {
@@ -440,8 +443,10 @@ Page {
                 }
 
 
-                console.log("Starting a call to " + keypadEntry.value);
-                mainView.call(keypadEntry.value);
+                //console.log("Starting a call to " + keypadEntry.value);
+                //mainView.call(keypadEntry.value);
+                console.log("Starting a call to cibersheep@sip.linphone.org");
+                Linphone.call("sip:cibersheep@linphone.org:5060");
             }
         }
     }
