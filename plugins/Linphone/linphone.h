@@ -16,6 +16,7 @@ public:
     Q_INVOKABLE void answer();
     Q_INVOKABLE void mute();
     Q_INVOKABLE void unmute();
+    Q_INVOKABLE void registerSIP(QString user, QString domain, QString password);
 
 public Q_SLOTS:
     void linphoneProcessFinished(int exitCode, QProcess::ExitStatus exitStatus);

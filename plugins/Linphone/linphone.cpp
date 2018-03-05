@@ -21,11 +21,11 @@ void Linphone::call(QString address) {
 
 void Linphone::terminate() {
     QStringList args;
-    args << "terminate";
+    args << "generic" << "terminate";
     m_linphoneProcess.setProcessEnvironment(m_env);
     m_linphoneProcess.start(m_linphonecsh, args);
 
-    qDebug() << "LINPHONECSH: terminating call";
+    qDebug() << "LINPHONECSH: terminating call" << &m_env;
 }
 
 void Linphone::answer() {
@@ -49,6 +49,23 @@ void Linphone::mute() {
 void Linphone::unmute() {
     QStringList args;
     args << "unmute";
+    m_linphoneProcess.setProcessEnvironment(m_env);
+    m_linphoneProcess.start(m_linphonecsh, args);
+
+    qDebug() << "LINPHONECSH: unmutting call";
+}
+
+void Linphone::registerSIP(QString user, QString domain, QString password) {
+    QStringList args;
+    QString userUser;
+    QString domainHost;
+    QString passwordPassword;
+    //address = "sip:" + user + "@" + domain;
+    userUser = " --username " + user;
+    domainHost = " --host " + domain;
+    passwordPassword = " --password " + password;
+    args << "register" << "--username" << user << "--host" << domain << "--password" << password;
+    qDebug() << "register" << "--username" << user << "--host" << domain << "--password" << password;
     m_linphoneProcess.setProcessEnvironment(m_env);
     m_linphoneProcess.start(m_linphonecsh, args);
 

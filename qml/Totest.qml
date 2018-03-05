@@ -30,8 +30,10 @@ Page {
     property string ussdResponseText: ""
     property bool greeterMode: (state == "greeterMode")
     property bool telepathyReady: false
+    property bool onCall: false
     property var currentStack: mainView.greeterMode ? pageStackGreeterMode : pageStackNormalMode
     property var bottomEdge: null
+    property int iconRotation
 
     //automaticOrientation: false
     implicitWidth: units.gu(40)
@@ -41,51 +43,89 @@ Page {
 
     property string pendingNumberToDial: ""
     property bool accountReady: false
+	    
+	header: PageHeader {visible: false}
+	Flickable {
+		anchors.fill: parent
+		height: mainCol.height + units.gu(40)
+		Column { 
+			id: mainCol
+			width: parent.width
+			anchors.top: parent.top
+			//anchors.topMargin: units.gu(3)
+			spacing: units.gu(2.5)
+			Label {
+				id: infoLabel
+				width: parent.width
+				text: "Doing nothing"
+			}
 
-    
+			TextField {
+				id: sipCall
+				width: parent.width-units.gu(3)
+				placeholderText: "SIP address. No `sip:` nor `:5060`"
+				anchors.horizontalCenter: parent.horizontalCenter
+				inputMethodHints: Qt.ImhUrlCharactersOnly
+			}
+			Button {
+				text: "@sip.linphone.org"
+				onClicked: sipCall.text += "@sip.linphone.org"
+				anchors.horizontalCenter: parent.horizontalCenter
+			}
+			Button {
+				text: "@sip.ippi.com"
+				onClicked: sipCall.text += "@sip.ippi.com"
+				anchors.horizontalCenter: parent.horizontalCenter
+			}
+			Button {
+				text: "@callcentric.com"
+				onClicked: sipCall.text += "@callcentric.com"
+				anchors.horizontalCenter: parent.horizontalCenter
+			}
 
-    Column {
-        width: parent.width
-        spacing: units.gu(4)
-        Label {
-            id: infoLabel
-            width: parent.width
-            text: "Doing nothing"
-        }
-
-        TextField {
-            id: sipCall
-            width: parent.width-units.gu(3)
-            placeholderText: "SIP address. No `sip:` nor `:5060`"
-            anchors.horizontalCenter: parent.horizontalCenter
-            inputMethodHints: Qt.ImhUrlCharactersOnly
-        }
-        Button {
-            text: "@sip.linphone.org"
-            onClicked: sipCall.text += "@sip.linphone.org"
-            anchors.horizontalCenter: parent.horizontalCenter
-        }
-        Button {
-            text: "@sip.ippi.com"
-            onClicked: sipCall.text += "@sip.ippi.com"
-            anchors.horizontalCenter: parent.horizontalCenter
-        }
-        Button {
-            text: "@callcentric.com"
-            onClicked: sipCall.text += "@callcentric.com"
-            anchors.horizontalCenter: parent.horizontalCenter
-        }
-
-        CallButton {
-            id: callButton
-            objectName: "callButton"
-            enabled: sipCall.text==="" ? false : true //mainView.telepathyReady
-            anchors.horizontalCenter: parent.horizontalCenter
-            onClicked: {
-                console.log("Try to call to " + sipCall.text)
-                Linphone.call("sip:" + sipCall.text + ":5060")
-            }
-        }
-    }
-
+			CallButton {
+				id: callButton
+				objectName: "callButton"
+				enabled: sipCall.text==="" ? false : true //mainView.telepathyReady
+				anchors.horizontalCenter: parent.horizontalCenter
+				
+				onClicked: {
+					onCall = !onCall
+					onCall ? iconRotation = 225 : iconRotation = 0
+					onCall ? callColor = UbuntuColors.red : callColor = defaultColor
+					onCall ? console.log("Try to call to " + sipCall.text) : console.log("Hanging up")
+					onCall ? Linphone.call("sip:" + sipCall.text + ":5060") : Linphone.terminate()
+				}
+			}
+			TextField {
+				id: user
+				width: parent.width-units.gu(3)
+				placeholderText: "Username"
+				anchors.horizontalCenter: parent.horizontalCenter
+				inputMethodHints: Qt.ImhUrlCharactersOnly
+			}
+			TextField {
+				id: domain
+				width: parent.width-units.gu(3)
+				placeholderText: "SIP host"
+				anchors.horizontalCenter: parent.horizontalCenter
+				inputMethodHints: Qt.ImhUrlCharactersOnly
+			}
+			TextField {
+				id: password
+				width: parent.width-units.gu(3)
+				placeholderText: "Password"
+				anchors.horizontalCenter: parent.horizontalCenter
+				inputMethodHints: Qt.ImhUrlCharactersOnly
+				echoMode: TextInput.Password
+			}
+			Button {
+				text: "login"
+				onClicked: {
+					console.log("Registering " + user)
+					Linphone.registerSIP(user.text, domain.text, password.text)
+				}
+			}
+		}
+	}
 }

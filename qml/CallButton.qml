@@ -23,6 +23,7 @@ AbstractButton {
     id: button
 
     readonly property string defaultColor: "#eb6536"
+    property string callColor: "#eb6536"
     property alias iconRotation: icon.rotation
     property alias color: shape.color
 
@@ -38,7 +39,7 @@ AbstractButton {
         id: shape
 
         anchors.fill: parent
-        color: defaultColor
+        color: callColor
         radius: "medium"
     }
 
