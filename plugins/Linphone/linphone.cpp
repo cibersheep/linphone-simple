@@ -4,6 +4,7 @@
 
 Linphone::Linphone() {
     connect(&m_linphoneProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(linphoneProcessFinished(int, QProcess::ExitStatus)));
+    connect(&m_linphoneProcess, SIGNAL(readyReadStandardOutput()), this, SIGNAL(readStatus()));
 
     m_env = QProcessEnvironment::systemEnvironment();
     m_env.insert("LD_LIBRARY_PATH", m_libPath);
@@ -29,8 +30,9 @@ void Linphone::terminate() {
 }
 
 void Linphone::answer() {
+	//TODO Might it be needed to specify wich call?
     QStringList args;
-    args << "answer";
+    args << "generic" << "answer";
     m_linphoneProcess.setProcessEnvironment(m_env);
     m_linphoneProcess.start(m_linphonecsh, args);
 
@@ -65,11 +67,44 @@ void Linphone::registerSIP(QString user, QString domain, QString password) {
     domainHost = " --host " + domain;
     passwordPassword = " --password " + password;
     args << "register" << "--username" << user << "--host" << domain << "--password" << password;
-    qDebug() << "register" << "--username" << user << "--host" << domain << "--password" << password;
+    qDebug() << "register" << "--username" << user << "--host" << domain;
     m_linphoneProcess.setProcessEnvironment(m_env);
     m_linphoneProcess.start(m_linphonecsh, args);
 
-    qDebug() << "LINPHONECSH: unmutting call";
+    qDebug() << "LINPHONECSH: registering " << user;
+    
+    status("register");
+}
+
+void Linphone::status(QString whatToCheck) {
+    QStringList args;
+    args << "status" << whatToCheck;
+    
+    m_linphoneProcess.setProcessEnvironment(m_env);
+    m_linphoneProcess.start(m_linphonecsh, args);
+    
+    qDebug() << "LINPHONECSH: status on " << whatToCheck;
+
+}
+
+QString Linphone::readStatusOutput() {
+    
+	QByteArray bytes = m_linphoneProcess.readAllStandardOutput();
+    QString output = QString::fromLocal8Bit(bytes);
+    
+    qDebug() << "LINPHONECSH: output " << output;
+    return output;
+}
+
+void Linphone::command(QStringList userCommand) {
+    QStringList args;
+    args << userCommand;
+    
+    m_linphoneProcess.setProcessEnvironment(m_env);
+    m_linphoneProcess.start(m_linphonecsh, args);
+    
+    qDebug() << "LINPHONECSH: command " << userCommand;
+
 }
 
 void Linphone::linphoneProcessFinished(int exitCode, QProcess::ExitStatus exitStatus) {

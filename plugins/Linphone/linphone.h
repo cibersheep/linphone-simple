@@ -17,9 +17,15 @@ public:
     Q_INVOKABLE void mute();
     Q_INVOKABLE void unmute();
     Q_INVOKABLE void registerSIP(QString user, QString domain, QString password);
+    Q_INVOKABLE void status(QString whatToCheck);
+    Q_INVOKABLE void command(QStringList userCommand);
+
+Q_SIGNALS:
+   void readStatus();
 
 public Q_SLOTS:
     void linphoneProcessFinished(int exitCode, QProcess::ExitStatus exitStatus);
+    QString readStatusOutput();
 
 private:
     //TODO don't hardcode these

@@ -45,6 +45,11 @@ Page {
     property bool accountReady: false
 	    
 	header: PageHeader {visible: false}
+	
+    Component.onCompleted: {
+		//Get the first Registering Status
+		Linphone.status("register")
+    }
 	Flickable {
 		anchors.fill: parent
 		height: mainCol.height + units.gu(40)
@@ -57,30 +62,36 @@ Page {
 			Label {
 				id: infoLabel
 				width: parent.width
-				text: "Doing nothing"
+				text: "No registration information"
+				Connections {
+					target: Linphone
+					onReadStatus: { infoLabel.text = Linphone.readStatusOutput() }
+				}
 			}
 
 			TextField {
 				id: sipCall
 				width: parent.width-units.gu(3)
-				placeholderText: "SIP address. No `sip:` nor `:5060`"
+				placeholderText: "SIP address to call"
 				anchors.horizontalCenter: parent.horizontalCenter
 				inputMethodHints: Qt.ImhUrlCharactersOnly
 			}
-			Button {
-				text: "@sip.linphone.org"
-				onClicked: sipCall.text += "@sip.linphone.org"
-				anchors.horizontalCenter: parent.horizontalCenter
-			}
-			Button {
-				text: "@sip.ippi.com"
-				onClicked: sipCall.text += "@sip.ippi.com"
-				anchors.horizontalCenter: parent.horizontalCenter
-			}
-			Button {
-				text: "@callcentric.com"
-				onClicked: sipCall.text += "@callcentric.com"
-				anchors.horizontalCenter: parent.horizontalCenter
+			Row {
+				Button {
+					text: "@sip.linphone.org"
+					onClicked: sipCall.text += "@sip.linphone.org"
+					//anchors.horizontalCenter: parent.horizontalCenter
+				}
+				Button {
+					text: "@sip.ippi.com"
+					onClicked: sipCall.text += "@sip.ippi.com"
+					//anchors.horizontalCenter: parent.horizontalCenter
+				}
+				Button {
+					text: "@callcentric.com"
+					onClicked: sipCall.text += "@callcentric.com"
+					//anchors.horizontalCenter: parent.horizontalCenter
+				}
 			}
 
 			CallButton {
@@ -94,7 +105,8 @@ Page {
 					onCall ? iconRotation = 225 : iconRotation = 0
 					onCall ? callColor = UbuntuColors.red : callColor = defaultColor
 					onCall ? console.log("Try to call to " + sipCall.text) : console.log("Hanging up")
-					onCall ? Linphone.call("sip:" + sipCall.text + ":5060") : Linphone.terminate()
+					//Replace 'sip:' 'http(s):' '/' ':number'
+					onCall ? Linphone.call("sip:" + sipCall.text.replace(/sip\:|\:(\d+)|https\:|http\:|\//gi,"") + ":5060") : Linphone.terminate()
 				}
 			}
 			TextField {
@@ -119,13 +131,59 @@ Page {
 				inputMethodHints: Qt.ImhUrlCharactersOnly
 				echoMode: TextInput.Password
 			}
-			Button {
-				text: "login"
-				onClicked: {
-					console.log("Registering " + user)
-					Linphone.registerSIP(user.text, domain.text, password.text)
+			Row {
+				spacing: units.gu(2)
+				Button {
+					text: "login"
+					onClicked: {
+						console.log("Registering " + user)
+						Linphone.registerSIP(user.text, domain.text, password.text)
+					}
+				}
+				Button {
+					text: "Register Status"
+					onClicked: {
+						Linphone.status("register")
+					}
 				}
 			}
+			Row {
+				spacing: units.gu(2)
+				Button {
+					text: "Answer"
+					onClicked: {
+						Linphone.answer()
+					}
+				}
+				Button {
+					text: "Hangup"
+					onClicked: {
+						Linphone.terminate()
+					}
+				}
+				
+			}
+			
+			Row {
+				width: parent.width
+				spacing: units.gu(1)
+				TextField {
+					id: command
+					width: parent.width - buttonSend.width - units.gu(1)
+					placeholderText: "Send a command to Linphone"
+					//anchors.horizontalCenter: parent.horizontalCenter
+					inputMethodHints: Qt.ImhUrlCharactersOnly
+					onAccepted: buttonSend.clicked()
+				}
+				Button {
+					id: buttonSend
+					text: ">"
+					onClicked: {
+						Linphone.command(command.text.split(" "))
+					}
+				}
+			}
+			
 		}
 	}
 }
