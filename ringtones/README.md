@@ -1,0 +1,4 @@
+# Ringtones
+
+Since linphone doesn't support ogg ringtones these ringtones here are wav
+versions of the Ubuntu Touch system ringtones.
