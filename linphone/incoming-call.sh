@@ -1,4 +1,3 @@
 #!/bin/bash
 
-# TODO see if we can drop the version
-ubuntu-app-launch linphone.cibersheep_linphone_0.4.2 linphone://incoming/$1
+ubuntu-app-launch `ubuntu-app-triplet linphone.cibersheep linphone` linphone://incoming/$1
