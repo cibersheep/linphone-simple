@@ -86,7 +86,7 @@ MainView {
             // TODO make these configurable
             // ogg isn't supported so we can't use the system ringtones
             Linphone.setConfig('sound/remote_ring', '/opt/click.ubuntu.com/linphone.cibersheep/current/ringtones/Ubuntu.wav')
-            Linphone.setConfig('sound/local_ring', '/opt/click.ubuntu.com/linphone.cibersheep/current/ringtones/Ubuntu.wav')
+            Linphone.setConfig('sound/local_ring', '/opt/click.ubuntu.com/linphone.cibersheep/current/ringtones/ringback.wav')
 
             if (!serviceRunning) {
                 console.log('Service not running, starting now')
