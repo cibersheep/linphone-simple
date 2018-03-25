@@ -95,6 +95,7 @@ MainView {
         }
     }
 
+	
     state: "normalMode"
     states: [
         State {
@@ -407,6 +408,18 @@ MainView {
         return null
     }
 
+
+    Connections {
+        target: UriHandler
+        onOpened: {
+           /*for (var i = 0; i < uris.length; ++i) {
+               application.parseArgument(uris[i])
+           }
+           */
+           console.log("Opened UriHandler form dialer-app.qml")
+       }
+    }
+
     Component.onCompleted: {
         i18n.domain = "dialer-app"
         /*
@@ -430,15 +443,6 @@ MainView {
     }
 
 
-
-    Connections {
-        target: UriHandler
-        onOpened: {
-           for (var i = 0; i < uris.length; ++i) {
-               application.parseArgument(uris[i])
-           }
-       }
-    }
 
 
     PageStack {

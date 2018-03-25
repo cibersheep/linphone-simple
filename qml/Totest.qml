@@ -17,6 +17,7 @@
  */
 import QtQuick 2.4
 import Ubuntu.Components 1.3
+import Ubuntu.Components.Popups 1.3
 
 import ServiceControl 1.0
 import Linphone 1.0
@@ -34,6 +35,9 @@ Page {
     property var currentStack: mainView.greeterMode ? pageStackGreeterMode : pageStackNormalMode
     property var bottomEdge: null
     property int iconRotation
+    
+    property string showId: ""
+    property string showDomain: ""
 
     //automaticOrientation: false
     implicitWidth: units.gu(40)
@@ -49,6 +53,7 @@ Page {
     Component.onCompleted: {
 		//Get the first Registering Status
 		Linphone.status("register")
+		
     }
 	Flickable {
 		anchors.fill: parent
@@ -185,5 +190,30 @@ Page {
 			}
 			
 		}
+	}
+	
+	Connections {
+        target: UriHandler
+        onOpened: {
+			console.log('Open from UriHandler')
+            if (uris.length > 0) {
+                console.log('Incoming call from UriHandler ' + uris[0]);
+                showIncomingCall(uris[0]);
+            }
+        }
+	}
+	
+	Component {
+		id: incomingCallComponent
+
+		IncomingCall {
+			anchors.fill: parent
+		}
+	}
+	function showIncomingCall(callerId) {
+		showId = callerId.replace("linphone://incoming/sip:","").split("@")[0]
+		showDomain = callerId.replace(":5060","").split("@")[1]
+		console.log("ID name: "+showId)
+		PopupUtils.open(incomingCallComponent);
 	}
 }
