@@ -69,7 +69,7 @@ MainView {
         serviceName: 'linphone'
 
         //TODO don't hardcode these
-        servicePath: '/opt/click.ubuntu.com/linphone.cibersheep/current/linphone/bin/linphonec --pipe' //TODO specify our own config file
+        servicePath: '/opt/click.ubuntu.com/linphone.cibersheep/current/linphone/bin/linphonec --pipe'
         libraryPath: '/opt/click.ubuntu.com/linphone.cibersheep/current/linphone/lib/arm-linux-gnueabihf'
         extraEnv: 'env TMPDIR=/home/phablet/.cache/linphone-tmp/'
         preStartScript: 'mkdir -p $TMPDIR'
@@ -79,6 +79,14 @@ MainView {
                 console.log('Service file not installed, installing now')
                 installServiceFile();
             }
+
+            // TODO if we have just installed a new version of the app there should be a manditory restart of linphone
+            Linphone.setConfig('ubuntu_touch/exec_incoming_call', 'bash /opt/click.ubuntu.com/linphone.cibersheep/current/linphone/incoming-call.sh');
+
+            // TODO make these configurable
+            // ogg isn't supported so we can't use the system ringtones
+            Linphone.setConfig('sound/remote_ring', '/opt/click.ubuntu.com/linphone.cibersheep/current/ringtones/ringback.wav')
+            Linphone.setConfig('sound/local_ring', '/opt/click.ubuntu.com/linphone.cibersheep/current/ringtones/Ubuntu.wav')
 
             if (!serviceRunning) {
                 console.log('Service not running, starting now')
@@ -96,8 +104,8 @@ MainView {
                 script: {
                     // preload greeter stack if not done yet
                     if (pageStackGreeterMode.depth == 0) {
-                        //pageStackGreeterMode.push(Qt.resolvedUrl("DialerPage.qml")) 
-                        pageStackGreeterMode.push(Qt.resolvedUrl("Totest.qml")) 
+                        //pageStackGreeterMode.push(Qt.resolvedUrl("DialerPage.qml"))
+                        pageStackGreeterMode.push(Qt.resolvedUrl("Totest.qml"))
                     }
                     // make sure to reset the view so that the contacts page is not loaded
 

@@ -9,3 +9,4 @@ install(
 
 install(DIRECTORY lib DESTINATION ${LINPHONE_DIR})
 install(DIRECTORY share DESTINATION ${LINPHONE_DIR})
+install(FILES incoming-call.sh DESTINATION ${LINPHONE_DIR})

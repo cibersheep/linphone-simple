@@ -1,4 +1,5 @@
 #include <QDebug>
+#include <QSettings>
 
 #include "linphone.h"
 
@@ -72,26 +73,26 @@ void Linphone::registerSIP(QString user, QString domain, QString password) {
     m_linphoneProcess.start(m_linphonecsh, args);
 
     qDebug() << "LINPHONECSH: registering " << user;
-    
+
     status("register");
 }
 
 void Linphone::status(QString whatToCheck) {
     QStringList args;
     args << "status" << whatToCheck;
-    
+
     m_linphoneProcess.setProcessEnvironment(m_env);
     m_linphoneProcess.start(m_linphonecsh, args);
-    
+
     qDebug() << "LINPHONECSH: status on " << whatToCheck;
 
 }
 
 QString Linphone::readStatusOutput() {
-    
+
 	QByteArray bytes = m_linphoneProcess.readAllStandardOutput();
     QString output = QString::fromLocal8Bit(bytes);
-    
+
     qDebug() << "LINPHONECSH: output " << output;
     return output;
 }
@@ -99,10 +100,10 @@ QString Linphone::readStatusOutput() {
 void Linphone::command(QStringList userCommand) {
     QStringList args;
     args << userCommand;
-    
+
     m_linphoneProcess.setProcessEnvironment(m_env);
     m_linphoneProcess.start(m_linphonecsh, args);
-    
+
     qDebug() << "LINPHONECSH: command " << userCommand;
 
 }
@@ -137,4 +138,9 @@ void Linphone::linphoneProcessFinished(int exitCode, QProcess::ExitStatus exitSt
             qDebug() << "LINPHONECSH: There was an unknown error";
         }
     }
+}
+
+void Linphone::setConfig(QString key, QString value) {
+    QSettings settings(m_configFile, QSettings::IniFormat);
+    settings.setValue(key, value);
 }

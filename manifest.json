@@ -9,7 +9,7 @@
             "desktop": "linphone.desktop"
         }
     },
-    "version": "0.4.1",
+    "version": "0.4.2",
     "maintainer": "Joan CiberSheep <cibersheep@gmail.com>",
     "framework": "ubuntu-sdk-15.04.6"
 }
