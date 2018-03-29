@@ -49,8 +49,20 @@ Page {
     property bool accountReady: false
 	    
 	header: PageHeader {visible: false}
-	
+		
     Component.onCompleted: {
+		//Check if opened the app because we have an incoming call
+		if (args.values.url && args.values.url.match(/^linphone/)) {
+			console.log("Incomin Call Closed App")
+            showIncomingCall(args.values.url);
+		} else if (Qt.application.arguments && Qt.application.arguments.length > 0) {
+            for (var i = 0; i < Qt.application.arguments.length; i++) {
+                if (Qt.application.arguments[i].match(/^linphone/)) {
+                    showIncomingCall(Qt.application.arguments[i]);
+                }
+            }
+	}
+		
 		//Get the first Registering Status
 		Linphone.status("register")
 		
@@ -192,6 +204,17 @@ Page {
 		}
 	}
 	
+	Arguments {
+        id: args
+
+        Argument {
+            name: 'url'
+            help: i18n.tr('Incoming Call from URL')
+            required: false
+            valueNames: ['URL']
+        }
+	}
+
 	Connections {
         target: UriHandler
         onOpened: {

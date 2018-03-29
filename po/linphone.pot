@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: linphone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-25 23:45+0000\n"
+"POT-Creation-Date: 2018-03-29 21:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -99,6 +99,10 @@ msgstr ""
 
 #: ../qml/Keypad.qml:242
 msgid "#"
+msgstr ""
+
+#: ../qml/Totest.qml:212
+msgid "Incoming Call from URL"
 msgstr ""
 
 #: ../qml/DialerPage.qml:50
