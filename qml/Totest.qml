@@ -29,9 +29,11 @@ Page {
     property bool applicationActive: Qt.application.active
     property string ussdResponseTitle: ""
     property string ussdResponseText: ""
+    property string statusTextReceived: ""
     property bool greeterMode: (state == "greeterMode")
     property bool telepathyReady: false
     property bool onCall: false
+    property bool incomingCall: false
     property var currentStack: mainView.greeterMode ? pageStackGreeterMode : pageStackNormalMode
     property var bottomEdge: null
     property int iconRotation
@@ -82,7 +84,14 @@ Page {
 				text: "No registration information"
 				Connections {
 					target: Linphone
-					onReadStatus: { infoLabel.text = Linphone.readStatusOutput() }
+					onReadStatus: { 
+						statusTextReceived = Linphone.readStatusOutput() 
+						infoLabel.text = statusTextReceived.trim()
+						if (statusTextReceived.trim().slice(0,14) === "No active call") {
+							console.log("Received: No acive calls")
+							incomingCall = false
+						}
+					}
 				}
 			}
 
